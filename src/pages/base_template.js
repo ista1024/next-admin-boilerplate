@@ -6,7 +6,12 @@ import Header from "../components/header";
 import SideBar from "../components/sideBar";
 import Footer from "../components/footer";
 
+import DropdownBtn from "../components/dropdown_btn";
+import Card from "../components/card";
+
+
 function Base() {
+  const items = ["test1", "test2", "test3"];
 
   return (
     <html lang="ko">
@@ -30,10 +35,7 @@ function Base() {
                   <div class="col-12 col-md-auto ms-auto d-print-none">
                     <div class="btn-list">
                       <span class="d-none d-sm-inline">
-                        <a href="#" class="btn btn-white">
-                          {" "}
-                          test
-                        </a>
+                        <DropdownBtn items={items} title="로그인 ID" id="user" />
                       </span>
                     </div>
                   </div>
@@ -41,7 +43,20 @@ function Base() {
               </div>
             </div>
 
+            <div class="page-body">
+              <div class="container-xl">
 
+                <div class="row row-deck row-cards">
+
+                  <div class="col-lg-12">
+                    {/* 모든  화면 내용의 위치 */}
+                    <Card html='test' />
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
 
             <Footer />
           </div>

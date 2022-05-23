@@ -20,5 +20,8 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "exports-loader": "^4.0.0"
   }
 }

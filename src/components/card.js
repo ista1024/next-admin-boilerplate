@@ -1,13 +1,12 @@
 import React from 'react';
  
 function Card(props) {
-    const html = props.html;
+    const html = props.html.map((code) => {return code});
+    const size = props.size;
   return (
-    <div class="card card-md">
-      <div class="card-body">
-        <div class="row align-items-center">
-            {html}
-        </div>
+    <div class={size}>
+      <div class='card'>
+        {html}
       </div>
     </div>
   );

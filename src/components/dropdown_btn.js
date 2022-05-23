@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-function Dropdown(props) {
+function DropdownBtn(props) {
     const [itemActive, setActive] = useState("dropdown-item ");
     const id = props.id;
     function handleDropdown(e) {
@@ -33,4 +33,4 @@ function Dropdown(props) {
   );
 }
 
-export default Dropdown;
+export default DropdownBtn;

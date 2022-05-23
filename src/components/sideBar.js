@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import logo from '../dist/images/logo_ictk_white.png';
+
 function SideBar(){
 
     const [pageName, getPageName] = useState('')
@@ -9,7 +11,7 @@ function SideBar(){
     }
 
 
-    return(
+    return( 
 
          <aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
               <div class="container-fluid">
@@ -18,7 +20,7 @@ function SideBar(){
                     </button>
                     <h1 class="navbar-brand navbar-brand-autodark">
                          <a href=".">
-                              <img src={process.env.PUBLIC_URL + "/logo_ictk_white.png"} width="144" height="76" alt="홈 아이콘" />
+                              <img src={logo} width="144" height="76" alt="홈 아이콘" />
                          </a>
                     </h1>
 

@@ -4,23 +4,43 @@ import Header from "../components/header";
 import SideBar from "../components/sideBar";
 import Footer from "../components/footer";
 
-import Dropdown from "../components/dropdown";
 import DropdownBtn from "../components/dropdown_btn";
 import Card from "../components/card";
+import Table from "../components/table";
+import DataTable from "../components/dataTable";
 
 const IndexPage = () => {
-  const items = ["test1", "test2", "test3"];
+  const items = ["마이페이지", "로그아웃"];
 
-  const html = <Dropdown items={items} title="드랍다운 테스트" id="test" />
+  const table_th = ['NAME',	'TITLE'	,'EMAIL','ROLE']
+  const table_td = 
+  [
+    ['Paweł Kuna', 'UI Designer, Training',	'paweluna@howstuffworks.com',	'User'],
+    ['Jeffie Lewzey', 'Chemical Engineer, Support',	'jlewzey1@seesaa.net',	'Admin'],
+    ['Mallory Hulme', 'Geologist IV, Support',	'mhulme2@domainmarket.com',	'User'],
+    ['Dunn Slane', 'Research Nurse, Sales',	'dslane3@epa.gov',	'User'],
+  ]
 
-  const userSvg = <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <desc>Download more icon variants from https://tabler-icons.io/i/user</desc>
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                    <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                  </svg>
+  const table = <Table table_th={table_th} table_td={table_td} />
 
-  console.log(document.documentElement.scrollTop); 
+  const data_table_th = [
+                          {class:'table-sort desc', data_sort:'sort-name', data:'name'},
+                          {class:'table-sort', data_sort:'sort-city', data:'city'},
+                          {class:'table-sort', data_sort:'sort-type', data:'type'},
+                          {class:'table-sort', data_sort:'sort-score', data:'score'}
+                        ]
+  const data_table_td = [
+                          [{class:'sort-name', data:'Wildfire6'}, {class:'sort-city', data:'Sweden'}, {class:'sort-type', data:'RMC Twister'}, {class:'sort-score', data:'99.3%'}],
+                          [{class:'sort-name', data:'Wildfire2'}, {class:'sort-city', data:'Sweden'}, {class:'sort-type', data:'RMC Twister'}, {class:'sort-score', data:'99.3%'}],
+                          [{class:'sort-name', data:'Wildfire3'}, {class:'sort-city', data:'Sweden'}, {class:'sort-type', data:'RMC Twister'}, {class:'sort-score', data:'99.3%'}],
+                          [{class:'sort-name', data:'Wildfire4'}, {class:'sort-city', data:'Sweden'}, {class:'sort-type', data:'RMC Twister'}, {class:'sort-score', data:'99.3%'}],
+                          [{class:'sort-name', data:'Wildfire5'}, {class:'sort-city', data:'Sweden'}, {class:'sort-type', data:'RMC Twister'}, {class:'sort-score', data:'99.3%'}],
+                        ]
+
+                      
+  const data_table = <DataTable table_th={data_table_th} table_td={data_table_td} />
+
+  const html = [table]
 
   return (
     <html lang="ko">
@@ -43,7 +63,7 @@ const IndexPage = () => {
                   <div class="col-12 col-md-auto ms-auto d-print-none">
                     <div class="btn-list">
                       <span class="d-none d-sm-inline">
-                        <DropdownBtn items={items} title="로그인 ID" id="test" />
+                        <DropdownBtn items={items} title="로그인 ID" id="user" />
 
                       </span>
                     </div>
@@ -57,9 +77,8 @@ const IndexPage = () => {
 
                 <div class="row row-deck row-cards">
 
-                  <div class="col-lg-12">
-                    <Card html={html} />
-                  </div>
+                    <Card html={html} size="col-12" />
+                    <Card html={[data_table]} size="col-12" />
 
                 </div>
 
