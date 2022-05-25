@@ -1,6 +1,4 @@
-import React, { useEffect } from "react";
-
-import "../dist/css/tabler.min.css";
+import React, {useState} from "react";
 
 import Header from "../components/header";
 import SideBar from "../components/sideBar";
@@ -8,10 +6,40 @@ import Footer from "../components/footer";
 
 import DropdownBtn from "../components/dropdown_btn";
 import Card from "../components/card";
+import Table from "../components/table";
+import DataTable from "../components/dataTable";
 
+import Popup from "../components/popup";
 
-function Base() {
-  const items = ["test1", "test2", "test3"];
+const Base = () => {
+
+  // Base Template
+  const items = [
+    { link: "mypage", name: "마이페이지" },
+    { link: "signout", name: "로그아웃" },
+  ]; 
+
+  // Popup 컨텐츠
+  const contents = <Card html="" size="col-6"/>;
+
+  var popupState = true;
+  var popupFunction = null;
+
+  function handleCallback([state, setState]){
+    popupState = state;
+    popupFunction = setState;
+  }
+
+  function handlePopup(){
+    if (popupState){
+        popupFunction(false);
+    }
+    else {
+        popupFunction(true);
+    }
+  }
+
+  // End Base Template
 
   return (
     <html lang="ko">
@@ -22,20 +50,20 @@ function Base() {
 
           <div class="page-wrapper" style={{maxWidth:1140, marginLeft:"20rem"}}>
             {/* 페이지 내용 공간 */}
-
-            <div class="container-xl">
+            <div class="container-xl" >
               {/* Page Title */}
               <div class="page-header d-print-none">
                 <div class="row g-2 align-items-center">
                   <div class="col">
                     <div class="page-pretitle">KEY Management Service(KMS)</div>
-                    <h2 class="page-title">{/* TITLE */}</h2>
+                    <h2 class="page-title">Dashboard</h2>
                   </div>
 
                   <div class="col-12 col-md-auto ms-auto d-print-none">
                     <div class="btn-list">
                       <span class="d-none d-sm-inline">
                         <DropdownBtn items={items} title="로그인 ID" id="user" />
+
                       </span>
                     </div>
                   </div>
@@ -48,10 +76,7 @@ function Base() {
 
                 <div class="row row-deck row-cards">
 
-                  <div class="col-lg-12">
-                    {/* 모든  화면 내용의 위치 */}
-                    <Card html='test' />
-                  </div>
+                    <button onClick={handlePopup}>test</button>
 
                 </div>
 
@@ -59,11 +84,12 @@ function Base() {
             </div>
 
             <Footer />
+            <Popup contents={contents} handleCallback={handleCallback}/>
           </div>
         </div>
       </body>
     </html>
   );
-}
+};
 
-export default Base
+export default Base;

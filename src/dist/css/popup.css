@@ -1,0 +1,22 @@
+.popup_background {
+    background-color: rgba(72, 67, 79, 0.5);
+    width: 10000rem;
+    height: 10000rem;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 10000;
+}
+
+.popup_modal {
+    z-index:10001;
+    width: 100%;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-25%) translateY(-50%);
+}
+
+.hide_popup {
+    display:none;
+}

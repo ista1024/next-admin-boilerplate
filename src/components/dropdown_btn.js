@@ -16,7 +16,7 @@ function DropdownBtn(props) {
         console.log(e.target.className);
         e.target.className = "dropdown-item active"
     };
-    const items = props.items.map((item) => <a class={itemActive} href="#" onClick={handleDropdown}>{item}</a>);
+    const items = props.items.map((item) => <a class={itemActive} href={item.link} onClick={handleDropdown}>{item.name}</a>);
     const title = props.title;
 
 

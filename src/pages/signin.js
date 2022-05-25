@@ -3,8 +3,22 @@ import "../dist/css/tabler.min.css";
 import axios from "axios";
 import { navigate } from "gatsby";
 import Alerts from "../components/alerts";
+//import logo from '../dist/images/0.0-ICTK-main-green.png';
 
-function Signin() {
+import { graphql } from "gatsby";
+
+export const query = graphql`
+  query SiteInfo {
+    site {
+      siteMetadata {
+        APIUrl
+      }
+    }
+  }`
+
+function Signin({data}) {
+  const APIUrl = data.site.siteMetadata.APIUrl;
+  console.log(APIUrl);
 
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
@@ -43,7 +57,7 @@ function Signin() {
         params.append('name', inputId);
         params.append('password', inputPw);
 
-        axios
+        /*axios
           .post("http://localhost:8000/signin/", params)
           .then(function (response) {
             if (response["data"]["result"] === "OK") {
@@ -58,7 +72,8 @@ function Signin() {
           })
           .catch(function (error) {
             console.log(error);
-          });
+          });*/
+        navigate('/');
     }
 
     return (
@@ -68,7 +83,7 @@ function Signin() {
       <div class="container-tight py-4">
         <Alerts title = {errorMessage} text = "test" type = {errorType} style= {{display: alertShow ? 'block' : 'none' }}/>
         <div class="text-center mb-4">
-          <a href="." class="navbar-brand navbar-brand-autodark"><img src={ process.env.PUBLIC_URL + "logo.svg" } height="36" alt="" /></a>
+          {/*<a href="." class="navbar-brand navbar-brand-autodark"><img src={logo} height="36" alt="" /></a>*/}
         </div>
         <form class="card card-md" action="." method="get" autocomplete="off">
           <div class="card-body">

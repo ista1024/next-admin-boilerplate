@@ -3,8 +3,6 @@ import React from 'react';
 function Alerts(props) {
     // type = ['success', 'info', 'warning', 'danger']
 
-    console.log(props)
-
     const className = "alert alert-" + props.type;
     const title = props.title;
     const alertShow = props.style;

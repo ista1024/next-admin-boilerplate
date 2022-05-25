@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 import Header from "../components/header";
 import SideBar from "../components/sideBar";
@@ -9,8 +9,37 @@ import Card from "../components/card";
 import Table from "../components/table";
 import DataTable from "../components/dataTable";
 
+import Popup from "../components/popup";
+
 const IndexPage = () => {
-  const items = ["마이페이지", "로그아웃"];
+
+  // Base Template
+  const items = [
+    { link: "mypage", name: "마이페이지" },
+    { link: "signout", name: "로그아웃" },
+  ]; 
+
+  // Popup 컨텐츠
+  const contents = <Card html={table} size="col-6"/>;
+
+  var popupState = true;
+  var popupFunction = null;
+
+  function handleCallback([state, setState]){
+    popupState = state;
+    popupFunction = setState;
+  }
+
+  function handlePopup(){
+    if (popupState){
+        popupFunction(false);
+    }
+    else {
+        popupFunction(true);
+    }
+  }
+
+  // End Base Template
 
   const table_th = ['NAME',	'TITLE'	,'EMAIL','ROLE']
   const table_td = 
@@ -37,10 +66,8 @@ const IndexPage = () => {
                           [{class:'sort-name', data:'Wildfire5'}, {class:'sort-city', data:'Sweden'}, {class:'sort-type', data:'RMC Twister'}, {class:'sort-score', data:'99.3%'}],
                         ]
 
-                      
   const data_table = <DataTable table_th={data_table_th} table_td={data_table_td} />
 
-  const html = [table]
 
   return (
     <html lang="ko">
@@ -77,8 +104,9 @@ const IndexPage = () => {
 
                 <div class="row row-deck row-cards">
 
-                    <Card html={html} size="col-12" />
+                    <Card html={table} size="col-12" />
                     <Card html={[data_table]} size="col-12" />
+                    <button onClick={handlePopup}>test</button>
 
                 </div>
 
@@ -86,6 +114,7 @@ const IndexPage = () => {
             </div>
 
             <Footer />
+            <Popup contents={contents} handleCallback={handleCallback}/>
           </div>
         </div>
       </body>
