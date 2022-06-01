@@ -3,7 +3,7 @@ import { navigate } from "gatsby";
 
 function Signout(){
     // 로그아웃 버튼 활성화 용
-    navigate('/signin');
+    //navigate('/signin');
 
     return(
         <div></div>

@@ -13,19 +13,15 @@ function Table(props) {
 
     const td_items = props.table_td.map((item) => <tr>{item.map((td) => <td>{td}</td>)}</tr>);
 return (
-    <div class="table-responsive"style={{overflowX:"inherit"}}>
-    <table class="table table-vcenter card-table" >
-        <thead>
-        <tr>
-            {th_items}
-        </tr>
-        </thead>
-        <tbody>
-            {td_items}
-        </tbody>
+  <div class="table-responsive" style={{ overflowY: "auto", maxHeight: "20rem" }}>
+    <table class="table table-vcenter card-table text-nowrap datatable">
+      <thead>
+        <tr>{th_items}</tr>
+      </thead>
+      <tbody>{td_items}</tbody>
     </table>
-    </div>
-    );
+  </div>
+);
 }
 
 export default Table;

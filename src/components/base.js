@@ -1,17 +1,17 @@
 import React, {useState} from "react";
 
-import Header from "../components/header";
-import SideBar from "../components/sideBar";
-import Footer from "../components/footer";
+import Header from "./header";
+import SideBar from "./sideBar";
+import Footer from "./footer";
 
-import DropdownBtn from "../components/dropdown_btn";
-import Card from "../components/card";
-import Table from "../components/table";
-import DataTable from "../components/dataTable";
+import DropdownBtn from "./dropdown_btn";
+import Card from "./card";
+import Table from "./table";
+import DataTable from "./dataTable";
 
-import Popup from "../components/popup";
+import Popup from "./popup";
 
-const Base = () => {
+const Base = (props) => {
 
   // Base Template
   const items = [
@@ -20,24 +20,8 @@ const Base = () => {
   ]; 
 
   // Popup 컨텐츠
-  const contents = <Card html="" size="col-6"/>;
 
-  var popupState = true;
-  var popupFunction = null;
-
-  function handleCallback([state, setState]){
-    popupState = state;
-    popupFunction = setState;
-  }
-
-  function handlePopup(){
-    if (popupState){
-        popupFunction(false);
-    }
-    else {
-        popupFunction(true);
-    }
-  }
+  // const [popup, setPopup] = useState(<Popup />)
 
   // End Base Template
 
@@ -56,11 +40,19 @@ const Base = () => {
                 <div class="row g-2 align-items-center">
                   <div class="col">
                     <div class="page-pretitle">KEY Management Service(KMS)</div>
-                    <h2 class="page-title">Dashboard</h2>
+                    <h2 class="page-title">{props.title}</h2>
                   </div>
 
                   <div class="col-12 col-md-auto ms-auto d-print-none">
                     <div class="btn-list">
+                      <a class="btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <desc>Download more icon variants from https://tabler-icons.io/i/refresh</desc>
+   <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+   <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4"></path>
+   <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4"></path>
+</svg>
+                        1:59:50</a>
                       <span class="d-none d-sm-inline">
                         <DropdownBtn items={items} title="로그인 ID" id="user" />
 
@@ -76,7 +68,8 @@ const Base = () => {
 
                 <div class="row row-deck row-cards">
 
-                    <button onClick={handlePopup}>test</button>
+                  {props.component}
+
 
                 </div>
 
@@ -84,7 +77,7 @@ const Base = () => {
             </div>
 
             <Footer />
-            <Popup contents={contents} handleCallback={handleCallback}/>
+            {props.popup}
           </div>
         </div>
       </body>

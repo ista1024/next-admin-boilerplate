@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 
-import Header from "../components/header";
-import SideBar from "../components/sideBar";
-import Footer from "../components/footer";
+import Base from "../components/base";
 
 import DropdownBtn from "../components/dropdown_btn";
 import Card from "../components/card";
@@ -20,25 +18,7 @@ const IndexPage = () => {
   ]; 
 
   // Popup 컨텐츠
-  const contents = <Card html={table} size="col-6"/>;
-
-  var popupState = true;
-  var popupFunction = null;
-
-  function handleCallback([state, setState]){
-    popupState = state;
-    popupFunction = setState;
-  }
-
-  function handlePopup(){
-    if (popupState){
-        popupFunction(false);
-    }
-    else {
-        popupFunction(true);
-    }
-  }
-
+  const [popup, setPopup] = useState(<Popup />)
   // End Base Template
 
   const table_th = ['NAME',	'TITLE'	,'EMAIL','ROLE']
@@ -68,57 +48,16 @@ const IndexPage = () => {
 
   const data_table = <DataTable table_th={data_table_th} table_td={data_table_td} />
 
-
+  const component = (
+    <div>
+      <Card html={table} size="col-12" />
+      <br />
+      <Card html={data_table} size="col-12" />
+    </div>
+  );
+  
   return (
-    <html lang="ko">
-      <Header />
-      <body>
-        <div class="page">
-          <SideBar />
-
-          <div class="page-wrapper" style={{maxWidth:1140, marginLeft:"20rem"}}>
-            {/* 페이지 내용 공간 */}
-            <div class="container-xl" >
-              {/* Page Title */}
-              <div class="page-header d-print-none">
-                <div class="row g-2 align-items-center">
-                  <div class="col">
-                    <div class="page-pretitle">KEY Management Service(KMS)</div>
-                    <h2 class="page-title">Dashboard</h2>
-                  </div>
-
-                  <div class="col-12 col-md-auto ms-auto d-print-none">
-                    <div class="btn-list">
-                      <span class="d-none d-sm-inline">
-                        <DropdownBtn items={items} title="로그인 ID" id="user" />
-
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="page-body">
-              <div class="container-xl">
-
-                <div class="row row-deck row-cards">
-
-                    <Card html={table} size="col-12" />
-                    <Card html={[data_table]} size="col-12" />
-                    <button onClick={handlePopup}>test</button>
-
-                </div>
-
-              </div>
-            </div>
-
-            <Footer />
-            <Popup contents={contents} handleCallback={handleCallback}/>
-          </div>
-        </div>
-      </body>
-    </html>
+    <Base title="Dashboard" component={component} popup=""/>
   );
 };
 

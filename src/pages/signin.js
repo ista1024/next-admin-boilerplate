@@ -7,14 +7,7 @@ import Alerts from "../components/alerts";
 
 import { graphql } from "gatsby";
 
-export const query = graphql`
-  query SiteInfo {
-    site {
-      siteMetadata {
-        APIUrl
-      }
-    }
-  }`
+
 
 function Signin({data}) {
   const APIUrl = data.site.siteMetadata.APIUrl;

@@ -1,16 +1,16 @@
 module.exports = {
   siteMetadata: {
-    title: 'ADMIN CONSOLE',
+    title: "ADMIN CONSOLE",
     APIUrl: `http://localhost:8000/`,
     APIFormat: {
-      header : {
-         trId : "210100",
-         function: "get_chal"
-      }, 
-      body : {
-        id : "LoveBTS"
-     }
-}
+      header: {
+        trId: "210100",
+        function: "get_chal",
+      },
+      body: {
+        id: "LoveBTS",
+      },
+    },
   },
   plugins: [
     {
@@ -20,4 +20,5 @@ module.exports = {
       },
     },
   ],
+
 };
