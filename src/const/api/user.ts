@@ -9,8 +9,6 @@
  *   passwdReset: 패스워드 재설정
  */
 
-export default user;
-
 const user = {
   // 사용자 목록
   list: {
@@ -80,3 +78,5 @@ const user = {
     },
   },
 };
+
+export default user;

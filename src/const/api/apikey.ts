@@ -7,8 +7,6 @@
  *   secretInfo: secret 정보
  */
 
-export default apikey;
-
 const apikey = {
   // 목록
   // 503000
@@ -66,3 +64,5 @@ const apikey = {
     },
   },
 };
+
+export default apikey;

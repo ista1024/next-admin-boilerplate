@@ -15,8 +15,6 @@
  *   detailDescChange: 편집-설명
  */
 
-export default key;
-
 const key = {
   // 키목록
   // 502000
@@ -162,3 +160,5 @@ const key = {
     },
   },
 };
+
+export default key;

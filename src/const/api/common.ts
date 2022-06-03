@@ -4,8 +4,6 @@
  *   login: 로그인 요청
  */
 
-export default common;
-
 const common = {
   // salt 값 획득
   saltuuid: {
@@ -26,3 +24,5 @@ const common = {
     },
   },
 };
+
+export default common;

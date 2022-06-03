@@ -23,6 +23,6 @@
       "@/util/*": ["src/util/*"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/const/getApiHeader.js"],
   "exclude": ["node_modules"]
 }

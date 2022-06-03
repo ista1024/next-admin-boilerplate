@@ -4,8 +4,6 @@
  *   decode: 데이터키 복호화 요청
  */
 
-export default datakey;
-
 const datakey = {
   // 데이터키 생성
   // 507000
@@ -30,3 +28,5 @@ const datakey = {
     },
   },
 };
+
+export default datakey;

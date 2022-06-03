@@ -5,8 +5,6 @@
  *   key: 키사용 이력관리 (루트키/고객사키 공통)
  */
 
-export default history;
-
 const history = {
   // 서비스 이력 관리
   // 505000
@@ -42,3 +40,5 @@ const history = {
     },
   },
 };
+
+export default history;
