@@ -26,3 +26,33 @@ const common = {
 };
 
 export default common;
+
+// common request body type
+export interface commonRequestProps {
+  saltuuid: {
+    userId: string;
+  }
+  login: {
+    userId: string;
+    uuid: string;
+    passwordHash: string;
+  }
+}
+
+// common response body type
+export interface commonResponseProps {
+  saltuuid: {
+    salt: string;
+    uuid: string;
+  }
+  login: {
+    token: {
+      accessToken: string;
+      expired: string;
+    },
+    userId: string;
+    userLevel: string;
+    failCnt: number;
+    status: string;
+  }
+}

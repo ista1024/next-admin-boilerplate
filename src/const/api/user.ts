@@ -80,3 +80,31 @@ const user = {
 };
 
 export default user;
+
+// user response body type
+export interface userRequestProps {
+  list: {
+    userList: {
+      userId: string;
+      userName: string;
+      userLevel: string;
+      email: string;
+    },
+    status: string;
+  },
+  register: null,
+}
+
+// user response body type
+export interface userResponseProps {
+  list: {
+  },
+  register: {
+    userId: string;
+    password: string;
+    name: string;
+    level: string;
+    email: string;
+    regUserId: string;
+  },
+}
