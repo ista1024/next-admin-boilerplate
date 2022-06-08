@@ -44,7 +44,7 @@ export interface commonResponseProps {
   saltuuid: {
     salt: string;
     uuid: string;
-  }
+  },
   login: {
     token: {
       accessToken: string;
@@ -54,5 +54,5 @@ export interface commonResponseProps {
     userLevel: string;
     failCnt: number;
     status: string;
-  }
+  },
 }
