@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Image from "next/image";
 import { styled, useTheme, Theme } from "@mui/material/styles";
 import Divider from "@mui/material/Divider";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
@@ -53,6 +54,12 @@ export default function SideMenu({ open, handleOpen }: SideMenuProps) {
   return (
     <div>
       <DrawerHeader>
+        <Image
+          src="/images/logo_ictk_white_125x65.png"
+          alt="logo"
+          width="125"
+          height="65"
+        />
         <IconButton onClick={() => handleOpen()}>
           {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
         </IconButton>
@@ -60,7 +67,7 @@ export default function SideMenu({ open, handleOpen }: SideMenuProps) {
       <Divider />
       <List>
         {sideMenu.menus.map((menu, index) => (
-          <>
+          <div key={menu.title + index}>
             <ListItem
               key={menu.title}
               onClick={() => {
@@ -90,7 +97,7 @@ export default function SideMenu({ open, handleOpen }: SideMenuProps) {
                 </List>
               </Collapse>
             ) : null}
-          </>
+          </div>
         ))}
       </List>
     </div>
