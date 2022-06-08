@@ -1,5 +1,6 @@
 import * as React from "react";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 
@@ -22,6 +23,11 @@ function MyApp({
 }: MyAppProps) {
   return (
     <CacheProvider value={emotionCache}>
+      <Head>
+        <title>KMS ADMIN CONSOLE</title>
+        <meta name="description" content="KEY Management Service(KMS)" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <Component {...pageProps} />
