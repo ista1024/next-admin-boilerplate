@@ -5,6 +5,14 @@ const nextConfig = {
     loader: "akamai",
     path: "/",
   },
+  async rewrites() {
+    return [
+      {
+        source: "/kms/:path*",
+        destination: `http://localhost:8095/:path*`,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
