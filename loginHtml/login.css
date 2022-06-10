@@ -1,0 +1,55 @@
+@media (min-width: 992px) {
+  .w-lg-100 {
+    width: 100%;
+  }
+  .w-lg-75 {
+    width: 75%;
+  }
+  .w-lg-50 {
+    width: 50%;
+  }
+  .w-lg-25 {
+    width: 25%;
+  }
+  .vh-lg-100 {
+    height: 100vh;
+  }
+  .h-lg-100 {
+    height: 100%;
+  }
+  .h-lg-75 {
+    height: 75%;
+  }
+  .h-lg-50 {
+    height: 50%;
+  }
+  .h-lg-25 {
+    height: 25%;
+  }
+}
+
+body {
+  background-color: #577482;
+  background-image: url('./pexels-johannes-plenio-1103970_1920.jpg');
+  background-size: cover;
+}
+
+.title {
+  color: #426a95;
+}
+
+
+.nav-pills .nav-link:hover {
+  color: #fff;
+  background-color: #17a2b8;
+  border-color: #17a2b8;
+}
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  color: #17a2b8;
+  background-color: transparent;
+  background-image: none;
+  border: 1px solid transparent;
+  border-color: #17a2b8;
+  outline: 0;
+  box-shadow:#17a2b8;
+}
