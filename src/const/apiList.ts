@@ -20,4 +20,6 @@ const ApiList = {
   datakey: datakey,
 };
 
+export type ApiListTypes = keyof typeof ApiList;
+
 export default ApiList;

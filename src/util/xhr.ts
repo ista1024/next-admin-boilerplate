@@ -1,4 +1,7 @@
-const xhr = async (req, body, callback) => {
+import { apiRequestHeader, RequestBodyTypes } from "@/const/ApiTypes";
+import { ApiListTypes } from "@/const/ApiList";
+
+const xhr = async (req: apiRequestHeader, body: RequestBodyTypes[ApiListTypes], callback: any) => {
   const domain = "http://localhost:8095";
   const url = domain + req.url;
   const method = req.method;

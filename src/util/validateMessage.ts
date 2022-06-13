@@ -1,4 +1,4 @@
-const regexPatterns = {
+const regexPatterns: any = {
   userId: /^[a-zA-Z0-9]{4,12}$/,
   password: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,16}$/,
   phone: /^01([0|1|6|7|8|9]?)-?([0-9]{3,4})-?([0-9]{4})$/,
@@ -12,8 +12,8 @@ const regexPatterns = {
   englishNumber: /^[a-zA-Z0-9]{2,10}$/,
 };
 
-const validateMessage = (type, message) => {
-  const pattern = regexPatterns[type];
+const validateMessage = (type: string, message: string): boolean => {
+  const pattern: RegExp = regexPatterns[type];
   const result = pattern.test(message);
   return result;
 };

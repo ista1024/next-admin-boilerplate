@@ -1,4 +1,4 @@
-async function Sha256(message) {
+async function Sha256(message: string): Promise<string> {
   // encode as (utf-8) Uint8Array
   const msgUint8 = new TextEncoder().encode(message);
   // hash the message

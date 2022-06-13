@@ -19,7 +19,15 @@ const common = {
   },
 };
 
-export const message = {
+interface Message {
+  userId: string;
+  password: string;
+  repeatPassword: string;
+  name: string;
+  email: string;
+}
+
+export const message: Message = {
   // 아이디 유효성 체크
   userId:
     "아이디를 정확히 입력해주세요.\n영문 대소문자, 숫자 4자리 이상 12자리 이하로 입력해주세요.",
