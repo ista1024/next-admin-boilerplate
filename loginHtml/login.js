@@ -81,6 +81,17 @@ function validateRegisterData(inputs, callback) {
   }
 }
 
+// function to count up the number from 0 to 100 in second
+export const countUp = () => {
+  let count = 0;
+  const interval = setInterval(() => {
+    count++;
+    if (count === 100) {
+      clearInterval(interval);
+    }
+  }, 1000);
+};
+
 export const register = async (
   // { userId, password, repeatPassword, name, email },
   registerData,
