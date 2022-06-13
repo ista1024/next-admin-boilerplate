@@ -17,6 +17,10 @@ interface MyAppProps extends AppProps {
 
 const clientSideEmotionCache = createEmotionCache();
 
+function getActiveTheme(themeMode: "light" | "dark") {
+  return themeMode === "light" ? lightTheme : darkTheme;
+}
+
 function MyApp({
   Component,
   emotionCache = clientSideEmotionCache,
@@ -24,6 +28,16 @@ function MyApp({
 }: MyAppProps) {
   const router = useRouter();
   const [isLogin, setIsLogin] = React.useState(true);
+
+  const [activeTheme, setActiveTheme] = React.useState(lightTheme);
+  const [selectedTheme, setSelectedTheme] = React.useState<"light" | "dark">(
+    "light"
+  );
+
+  const toggleTheme: React.MouseEventHandler<HTMLAnchorElement> = () => {
+    const desiredTheme = selectedTheme === "light" ? "dark" : "light";
+    setSelectedTheme(desiredTheme);
+  };
 
   React.useEffect(() => {
     if (!isLogin) {
@@ -33,6 +47,10 @@ function MyApp({
     // router.push("/");
   }, []);
 
+  React.useEffect(() => {
+    setActiveTheme(getActiveTheme(selectedTheme));
+  }, [selectedTheme]);
+
   return (
     <CacheProvider value={emotionCache}>
       <Head>
@@ -40,9 +58,9 @@ function MyApp({
         <meta name="description" content="KEY Management Service(KMS)" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={activeTheme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Component {...pageProps} toggleTheme={toggleTheme} />
       </ThemeProvider>
     </CacheProvider>
   );

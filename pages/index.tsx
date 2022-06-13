@@ -1,36 +1,54 @@
 import type { NextPage } from "next";
 import Link from "next/link";
-import styles from "@/styles/Home.module.css";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Doughnut } from "react-chartjs-2";
+import ResponsiveLineChart from "@/components/responsiveLine";
 
+import styles from "@/styles/Home.module.css";
 import ResponsiveDrawer from "@/components/responsiveDrawer";
 
-const Home: NextPage = () => {
-  const data = {
-    labels: ["Red", "Blue", "Yellow"],
-    datasets: [
-      {
-        label: "My First Dataset",
-        data: [300, 50, 100],
-        backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
-        ],
-        hoverOffset: 4,
-      },
-    ],
-  };
+type HomeProps = {
+  toggleTheme?: React.MouseEventHandler<HTMLButtonElement>;
+};
+
+const Home: NextPage = ({ toggleTheme }: HomeProps) => {
+  const [checkAuth, setCheckAuth] = useState(false);
+
+  const [data, setdata] = useState<any>({ data: [] });
+  const [loading, setLoading] = useState(true);
+  const [chart, setChart] = useState(<></>);
+
+  useEffect(() => {
+    axios.get("/api/lineChartData").then((res) => {
+      setdata(res.data);
+      console.log(res.data);
+      setLoading(false);
+    });
+  }, []);
+
+  useEffect(() => {
+    console.log(data);
+    if (data.data.length > 0) setChart(<ResponsiveLineChart {...data} />);
+  }, [data]);
+
   return (
-    <ResponsiveDrawer title={"Dash Board"}>
+    <ResponsiveDrawer title={"Dash Board"} toggleTheme={toggleTheme}>
       <main className={styles.main}>
-        <div>
-          <a href="http://localhost:5500/loginHtml/login.html">
-            <h1>Click here to move to Login!</h1>
-          </a>
-        </div>
-        <div>
-          <Doughnut data={data} />
+        {checkAuth ? (
+          <div>
+            <a href="http://localhost:5500/loginHtml/login.html">
+              <h1>Click here to move to Login!</h1>
+            </a>
+          </div>
+        ) : null}
+        <div
+          style={{
+            height: 300,
+            width: 700,
+          }}
+        >
+          {loading ? <div>Loading...</div> : chart}
         </div>
       </main>
     </ResponsiveDrawer>
