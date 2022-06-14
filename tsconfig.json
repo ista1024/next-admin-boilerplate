@@ -18,6 +18,7 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/const/*": ["src/const/*"],
+      "@/contexts/*": ["src/contexts/*"],
       "@/dist/*": ["src/dist/*"],
       "@/styles/*": ["src/styles/*"],
       "@/util/*": ["src/util/*"],

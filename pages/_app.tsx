@@ -1,44 +1,34 @@
-import * as React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 
-import createEmotionCache from "@/util/createEmotionCache";
 import lightTheme from "@/styles/theme/lightTheme";
 import darkTheme from "@/styles/theme/darkTheme";
-
-interface MyAppProps extends AppProps {
-  emotionCache?: EmotionCache;
-}
-
-const clientSideEmotionCache = createEmotionCache();
+import { ThemeContextProvider } from "@/contexts/ThemeContext";
 
 function getActiveTheme(themeMode: "light" | "dark") {
   return themeMode === "light" ? lightTheme : darkTheme;
 }
 
-function MyApp({
-  Component,
-  emotionCache = clientSideEmotionCache,
-  pageProps,
-}: MyAppProps) {
+function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = React.useState(true);
-  const [isLogin, setIsLogin] = React.useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLogin, setIsLogin] = useState(true);
 
-  const [activeTheme, setActiveTheme] = React.useState(lightTheme);
-  const [selectedTheme, setSelectedTheme] = React.useState<"light" | "dark">(
-    "light"
-  );
+  /*
+  const [activeTheme, setActiveTheme] = useState(lightTheme);
+  const [selectedTheme, setSelectedTheme] = useState<"light" | "dark">("light");
 
   const toggleTheme: React.MouseEventHandler<HTMLAnchorElement> = () => {
     const desiredTheme = selectedTheme === "light" ? "dark" : "light";
+    localStorage.setItem("theme", desiredTheme);
     setSelectedTheme(desiredTheme);
   };
+  */
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isLogin) {
       // location.href = "http://localhost:5500/loginHtml/login.html";
       router.push("http://localhost:5500/loginHtml/login.html");
@@ -47,28 +37,19 @@ function MyApp({
     // router.push("/");
   }, []);
 
-  React.useEffect(() => {
-    setActiveTheme(getActiveTheme(selectedTheme));
-  }, [selectedTheme]);
-
   return (
-    <CacheProvider value={emotionCache}>
+    <ThemeContextProvider>
       <Head>
         <title>KMS ADMIN CONSOLE</title>
         <meta name="description" content="KEY Management Service(KMS)" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <ThemeProvider theme={activeTheme}>
-        <CssBaseline />
-        <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
-          <Component
-            {...pageProps}
-            toggleTheme={toggleTheme}
-            selectedTheme={selectedTheme === "dark"}
-          />
-        </div>
-      </ThemeProvider>
-    </CacheProvider>
+      <CssBaseline />
+      <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
+        <Component {...pageProps} />
+      </div>
+    </ThemeContextProvider>
   );
 }
 
