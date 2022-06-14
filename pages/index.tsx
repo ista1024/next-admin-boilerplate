@@ -9,14 +9,7 @@ import ResponsiveLineChart from "@/components/responsiveLine";
 import styles from "@/styles/Home.module.css";
 import ResponsiveDrawer from "@/components/responsiveDrawer";
 
-type HomePage = {};
-
-type HomeProps = {
-  toggleTheme?: React.MouseEventHandler<HTMLButtonElement>;
-  selectedTheme: boolean;
-};
-
-const Home: HomePage = ({ toggleTheme, selectedTheme }: HomeProps) => {
+const Home: NextPage = () => {
   const [checkAuth, setCheckAuth] = useState(false);
 
   const [data, setdata] = useState<any>({ data: [] });
@@ -26,23 +19,16 @@ const Home: HomePage = ({ toggleTheme, selectedTheme }: HomeProps) => {
   useEffect(() => {
     axios.get("/api/lineChartData").then((res) => {
       setdata(res.data);
-      console.log(res.data);
       setLoading(false);
     });
   }, []);
 
   useEffect(() => {
-    console.log(data);
-    if (data.data.length > 0)
-      setChart(<ResponsiveLineChart {...data} lightTheme={selectedTheme} />);
+    if (data.data.length > 0) setChart(<ResponsiveLineChart {...data} />);
   }, [data]);
 
   return (
-    <ResponsiveDrawer
-      title={"Dash Board"}
-      toggleTheme={toggleTheme}
-      checked={selectedTheme}
-    >
+    <ResponsiveDrawer title={"Dash Board"}>
       <main className={styles.main}>
         {checkAuth ? (
           <div>

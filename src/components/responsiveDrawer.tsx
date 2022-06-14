@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { ThemeProvider, createTheme } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -13,8 +13,9 @@ import SideMenu from "@/components/sideMenu";
 import { SIDE_MENU_WIDTH } from "@/const/menu/sideMenu";
 
 import MaterialUISwitch from "@/components/MuiSwitch";
-
 import { palette } from "@mui/system";
+
+import { ThemeContext } from "@/contexts/ThemeContext";
 
 const theme = createTheme({
   palette: {
@@ -27,16 +28,9 @@ const theme = createTheme({
 interface LayoutProps {
   title: string;
   children: React.ReactNode;
-  toggleTheme?: React.MouseEventHandler<HTMLButtonElement>;
-  checked: boolean;
 }
 
-export default function ResponsiveDrawer({
-  title,
-  children,
-  toggleTheme,
-  checked,
-}: LayoutProps) {
+export default function ResponsiveDrawer({ title, children }: LayoutProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [drawerWidth, setDrawerWidth] = useState(SIDE_MENU_WIDTH);
 
@@ -67,16 +61,10 @@ export default function ResponsiveDrawer({
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="subtitle2" noWrap component="div">
-            {title ? title : "Responsive drawer"}
-          </Typography>
           <Typography variant="h6" noWrap component="div">
             {title ? title : "Responsive drawer"}
           </Typography>
-          <Button onClick={toggleTheme} color={"info"}>
-            Theme
-          </Button>
-          <MaterialUISwitch toggleTheme={toggleTheme} checked={checked} />
+          <MaterialUISwitch />
         </Toolbar>
       </AppBar>
       <Box

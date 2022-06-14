@@ -3,23 +3,16 @@ import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
 import Typography from "@mui/material/Typography";
 
-import MenuConst from "@/const/menu/MenuConst";
-import { MenuConstTypes } from "@/const/menu/sideMenu";
+import { MenuProps } from "@/const/menu/MenuConst";
 
-interface pageHeaderProps {
-  title: MenuConstTypes;
-}
-
-const PageHeader = ({ title }: pageHeaderProps) => {
-  const menu = MenuConst[title];
-
+const PageHeader = ({ title, subtitle }: MenuProps) => {
   return (
     <Box sx={{ display: "flex", alignSelf: "flex-start" }}>
       <CssBaseline />
       <Box component="div">
-        <Typography variant="h5">{menu.title}</Typography>
+        <Typography variant="h5">{title}</Typography>
         <Typography variant="h6" mt={1} ml={2}>
-          {menu.subTitle}
+          {subtitle}
         </Typography>
       </Box>
     </Box>
