@@ -8,11 +8,14 @@ import ResponsiveLineChart from "@/components/responsiveLine";
 import styles from "@/styles/Home.module.css";
 import ResponsiveDrawer from "@/components/responsiveDrawer";
 
+type HomePage = {};
+
 type HomeProps = {
   toggleTheme?: React.MouseEventHandler<HTMLButtonElement>;
+  selectedTheme: boolean;
 };
 
-const Home: NextPage = ({ toggleTheme }: HomeProps) => {
+const Home: HomePage = ({ toggleTheme, selectedTheme }: HomeProps) => {
   const [checkAuth, setCheckAuth] = useState(false);
 
   const [data, setdata] = useState<any>({ data: [] });
@@ -29,11 +32,16 @@ const Home: NextPage = ({ toggleTheme }: HomeProps) => {
 
   useEffect(() => {
     console.log(data);
-    if (data.data.length > 0) setChart(<ResponsiveLineChart {...data} />);
+    if (data.data.length > 0)
+      setChart(<ResponsiveLineChart {...data} lightTheme={selectedTheme} />);
   }, [data]);
 
   return (
-    <ResponsiveDrawer title={"Dash Board"} toggleTheme={toggleTheme}>
+    <ResponsiveDrawer
+      title={"Dash Board"}
+      toggleTheme={toggleTheme}
+      checked={selectedTheme}
+    >
       <main className={styles.main}>
         {checkAuth ? (
           <div>

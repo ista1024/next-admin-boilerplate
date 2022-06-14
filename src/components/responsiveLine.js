@@ -1,7 +1,7 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 
-const ResponsiveLineChart = ({ data }) => {
+const ResponsiveLineChart = ({ data, lightTheme }) => {
   const commonProperties = {
     width: 700,
     height: 400,

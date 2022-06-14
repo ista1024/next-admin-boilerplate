@@ -55,20 +55,21 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 interface MuiSwitchProps {
   toggleTheme?: React.MouseEventHandler<HTMLButtonElement>;
+  checked?: boolean;
 }
 
-export default function MuiSwitch({ toggleTheme }: MuiSwitchProps) {
+export default function MuiSwitch({ toggleTheme, checked }: MuiSwitchProps) {
   return (
     <FormGroup>
       <FormControlLabel
         control={
           <MaterialUISwitch
             sx={{ m: 1 }}
-            defaultChecked
-            onChange={toggleTheme}
+            checked={checked}
+            onClick={toggleTheme}
           />
         }
-        label="MUI switch"
+        label="Switch Theme"
       />
     </FormGroup>
   );

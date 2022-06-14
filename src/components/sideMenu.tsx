@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { styled, useTheme, Theme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import Button, { ButtonProps } from "@mui/material/Button";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -14,6 +17,10 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
+import ColorIconButton from "@/components/ColorIconButton";
+
+import styles from "@/styles/Global.module.css";
 
 import sideMenu, {
   hasSubMenu,
@@ -28,9 +35,9 @@ interface SideMenuProps {
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-end",
+  justifyContent: "center",
   padding: theme.spacing(0, 1),
-  backgroundColor: "#333333",
+  backgroundColor: "#272727",
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
@@ -55,15 +62,23 @@ export default function SideMenu({ open, handleOpen }: SideMenuProps) {
   return (
     <div>
       <DrawerHeader>
-        <Image
-          src="/images/logo_ictk_white_125x65.png"
-          alt="logo"
-          width="125"
-          height="65"
-        />
-        <IconButton onClick={() => handleOpen()}>
-          {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-        </IconButton>
+        <Box>
+          <Link href="/">
+            <a className={styles.a}>
+              <Image
+                src="/images/logo_ictk_white_125x65.png"
+                alt="logo"
+                width="115"
+                height="60"
+              />
+            </a>
+          </Link>
+        </Box>
+        <div style={{ marginLeft: "auto" }}>
+          <ColorIconButton onClick={() => handleOpen()}>
+            {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </ColorIconButton>
+        </div>
       </DrawerHeader>
       <Divider />
       <List>

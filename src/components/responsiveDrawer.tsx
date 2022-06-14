@@ -28,12 +28,14 @@ interface LayoutProps {
   title: string;
   children: React.ReactNode;
   toggleTheme?: React.MouseEventHandler<HTMLButtonElement>;
+  checked: boolean;
 }
 
 export default function ResponsiveDrawer({
   title,
   children,
   toggleTheme,
+  checked,
 }: LayoutProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [drawerWidth, setDrawerWidth] = useState(SIDE_MENU_WIDTH);
@@ -51,6 +53,7 @@ export default function ResponsiveDrawer({
         color="default"
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
+          height: "65px",
           ml: { sm: `${drawerWidth}px` },
         }}
       >
@@ -73,7 +76,7 @@ export default function ResponsiveDrawer({
           <Button onClick={toggleTheme} color={"info"}>
             Theme
           </Button>
-          <MaterialUISwitch onChange={toggleTheme} />
+          <MaterialUISwitch toggleTheme={toggleTheme} checked={checked} />
         </Toolbar>
       </AppBar>
       <Box

@@ -9,8 +9,6 @@ import createEmotionCache from "@/util/createEmotionCache";
 import lightTheme from "@/styles/theme/lightTheme";
 import darkTheme from "@/styles/theme/darkTheme";
 
-import "@/styles/globals.css";
-
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
 }
@@ -60,7 +58,11 @@ function MyApp({
       </Head>
       <ThemeProvider theme={activeTheme}>
         <CssBaseline />
-        <Component {...pageProps} toggleTheme={toggleTheme} />
+        <Component
+          {...pageProps}
+          toggleTheme={toggleTheme}
+          selectedTheme={selectedTheme === "dark"}
+        />
       </ThemeProvider>
     </CacheProvider>
   );
