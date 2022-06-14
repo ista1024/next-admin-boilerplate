@@ -5,9 +5,12 @@ import axios from "axios";
 import Box from "@mui/material/Box";
 import { Doughnut } from "react-chartjs-2";
 import ResponsiveLineChart from "@/components/responsiveLine";
+import ResponsiveDrawer from "@/components/responsiveDrawer";
+import PageHeader from "@/components/page/pageHeader";
 
 import styles from "@/styles/Home.module.css";
-import ResponsiveDrawer from "@/components/responsiveDrawer";
+
+import MenuConst from "@/const/menu/MenuConst";
 
 type HomePage = {};
 
@@ -17,6 +20,8 @@ type HomeProps = {
 };
 
 const Home: HomePage = ({ toggleTheme, selectedTheme }: HomeProps) => {
+  const title = MenuConst.user.title;
+  const subTitle = MenuConst.user.subTitle;
   const [checkAuth, setCheckAuth] = useState(false);
 
   const [data, setdata] = useState<any>({ data: [] });
@@ -44,27 +49,17 @@ const Home: HomePage = ({ toggleTheme, selectedTheme }: HomeProps) => {
       checked={selectedTheme}
     >
       <main className={styles.main}>
-        {checkAuth ? (
-          <div>
-            <a href="http://localhost:5500/loginHtml/login.html">
-              <h1>Click here to move to Login!</h1>
-            </a>
+        <PageHeader title={"user"} />
+        <Box>
+          <div
+            style={{
+              height: 300,
+              width: 700,
+            }}
+          >
+            {loading ? <div>Loading...</div> : chart}
           </div>
-        ) : null}
-        <Box sx={{ alignSelf: "flex-start", ml: 20 }}>
-          <h1>
-            You are safe with <a href="https://ictk.com/">ICTK</a>
-          </h1>
-          <h1>KEY Management Service(KMS)</h1>
         </Box>
-        <div
-          style={{
-            height: 300,
-            width: 700,
-          }}
-        >
-          {loading ? <div>Loading...</div> : chart}
-        </div>
       </main>
     </ResponsiveDrawer>
   );

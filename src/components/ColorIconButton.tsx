@@ -3,8 +3,8 @@ import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import { grey } from "@mui/material/colors";
 
 const ColorIconButton = styled(IconButton)<IconButtonProps>(({ theme }) => ({
-  color: theme.palette.getContrastText(grey[500]),
-  backgroundColor: grey[500],
+  color: theme.palette.getContrastText("#272727"),
+  backgroundColor: "#272727",
   "&:hover": {
     backgroundColor: grey[700],
   },

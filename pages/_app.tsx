@@ -25,6 +25,7 @@ function MyApp({
   pageProps,
 }: MyAppProps) {
   const router = useRouter();
+  const [isLoading, setIsLoading] = React.useState(true);
   const [isLogin, setIsLogin] = React.useState(true);
 
   const [activeTheme, setActiveTheme] = React.useState(lightTheme);
@@ -42,6 +43,7 @@ function MyApp({
       // location.href = "http://localhost:5500/loginHtml/login.html";
       router.push("http://localhost:5500/loginHtml/login.html");
     }
+    setIsLoading(false);
     // router.push("/");
   }, []);
 
@@ -58,11 +60,13 @@ function MyApp({
       </Head>
       <ThemeProvider theme={activeTheme}>
         <CssBaseline />
-        <Component
-          {...pageProps}
-          toggleTheme={toggleTheme}
-          selectedTheme={selectedTheme === "dark"}
-        />
+        <div style={{ visibility: isLoading ? "hidden" : "visible" }}>
+          <Component
+            {...pageProps}
+            toggleTheme={toggleTheme}
+            selectedTheme={selectedTheme === "dark"}
+          />
+        </div>
       </ThemeProvider>
     </CacheProvider>
   );
