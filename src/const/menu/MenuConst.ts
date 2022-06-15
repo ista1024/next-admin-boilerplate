@@ -1,4 +1,4 @@
-import { MenuConstTypes } from "@/const/menu/sideMenu";
+export type MenuConstType = "user" | "rootKey" | "custKey" | "apiKey" | "history";
 
 export interface MenuProps {
   title: string;
@@ -6,7 +6,7 @@ export interface MenuProps {
 }
 
 type MenuConstProps = {
-  [key in MenuConstTypes]: MenuProps;
+  [key in MenuConstType]: MenuProps;
 }
 
 const MenuConst: MenuConstProps = {

@@ -4,12 +4,23 @@ import { ThemeProvider } from "@mui/material";
 import lightTheme from "@/styles/theme/lightTheme";
 import darkTheme from "@/styles/theme/darkTheme";
 
-export const ThemeContext = createContext({
-  setDarkMode: (val) => {},
-  darkMode: false,
-});
+type ThemeContextType = {
+  darkMode: boolean;
+  setThemeMode: (darkMode: boolean) => void;
+};
 
-const reducer = (state, action) => {
+type State = {
+  darkMode: boolean;
+};
+type Action = {
+  type: "SET_THEME";
+  payload: boolean;
+};
+
+// TODO: change any to type
+export const ThemeContext = createContext<any>(null);
+
+const reducer = (state: State, action: Action) => {
   switch (action.type) {
     case "SET_THEME":
       return {
@@ -25,9 +36,13 @@ const initialState = {
   darkMode: false,
 };
 
-export const ThemeContextProvider = (props) => {
+export const ThemeContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const setDarkMode = (val) => {
+  const setDarkMode = (val: boolean) => {
     dispatch({
       type: "SET_THEME",
       payload: val,
@@ -41,8 +56,8 @@ export const ThemeContextProvider = (props) => {
         setDarkMode,
       }}
     >
-      <ThemeProvider theme={state.darkMode.payload ? darkTheme : lightTheme}>
-        {props.children}
+      <ThemeProvider theme={state.darkMode ? darkTheme : lightTheme}>
+        {children}
       </ThemeProvider>
     </ThemeContext.Provider>
   );

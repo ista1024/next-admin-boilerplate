@@ -6,14 +6,14 @@ import PageHeader from "@/components/page/pageHeader";
 import styles from "@/styles/Home.module.css";
 
 import MenuConst from "@/const/menu/MenuConst";
-import { MenuConstTypes } from "@/const/menu/sideMenu";
+import { MenuConstType } from "@/const/menu/MenuConst";
 
 interface pageProps {
-  pageName: MenuConstTypes;
+  pageName: MenuConstType;
   children?: React.ReactNode;
 }
 
-const Page = ({ pageName, children }: pageProps) => {
+const PageLayout = ({ pageName, children }: pageProps) => {
   const title = MenuConst[pageName].title;
   const subtitle = MenuConst[pageName].subtitle;
 
@@ -27,4 +27,4 @@ const Page = ({ pageName, children }: pageProps) => {
   );
 };
 
-export default Page;
+export default PageLayout;

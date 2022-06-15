@@ -5,7 +5,7 @@ import ResponsiveLineChart from "@/components/responsiveLine";
 
 import PageLayout from "@/components/page/pageLayout";
 import { MenuConstType } from "@/const/menu/MenuConst";
-const pageName: MenuConstType = "user";
+const pageName: MenuConstType = "history";
 
 const Home: NextPage = () => {
   const [checkAuth, setCheckAuth] = useState(false);
@@ -15,10 +15,7 @@ const Home: NextPage = () => {
   const [chart, setChart] = useState(<></>);
 
   useEffect(() => {
-    axios.get("/api/user").then((res) => {
-      // setdata(res.data);
-      console.log(res.data);
-    });
+    // axios.get("/api/history").then((res) => {});
     setLoading(false);
   }, []);
 

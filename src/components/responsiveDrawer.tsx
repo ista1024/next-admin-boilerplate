@@ -64,6 +64,7 @@ export default function ResponsiveDrawer({ title, children }: LayoutProps) {
           <Typography variant="h6" noWrap component="div">
             {title ? title : "Responsive drawer"}
           </Typography>
+          <Box sx={{ flexGrow: 1 }} />
           <MaterialUISwitch />
         </Toolbar>
       </AppBar>

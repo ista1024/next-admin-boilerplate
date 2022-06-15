@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch, { SwitchProps } from "@mui/material/Switch";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
 
 import { ThemeContext } from "@/contexts/ThemeContext";
 
@@ -57,16 +55,11 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export default function MuiSwitch() {
   const { darkMode, setDarkMode } = useContext(ThemeContext);
-  const [checked, setChecked] = useState(darkMode);
+  const [checked, setChecked] = useState(darkMode ? true : false);
 
-  const handleThemeChange = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleThemeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
-    setDarkMode({
-      type: "SET_THEME",
-      payload: event.target.checked,
-    });
+    setDarkMode(event.target.checked);
   };
 
   return (
@@ -76,10 +69,10 @@ export default function MuiSwitch() {
           <MaterialUISwitch
             sx={{ m: 1 }}
             checked={checked}
-            onClick={(e) => handleThemeChange(e)}
+            onChange={(e) => handleThemeChange(e)}
           />
         }
-        label="Switch Theme"
+        label=""
       />
     </FormGroup>
   );

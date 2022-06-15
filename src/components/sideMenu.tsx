@@ -91,15 +91,17 @@ export default function SideMenu({ open, handleOpen }: SideMenuProps) {
               }}
               disablePadding
             >
-              <a href={menu.route} className={styles.a}>
-                <ListItemButton>
-                  <ListItemIcon>
-                    <menu.icon />
-                  </ListItemIcon>
-                  {open ? <ListItemText primary={menu.title} /> : null}
-                  {hasSubMenu(menu) ? handleSubMenu(index) : null}
-                </ListItemButton>
-              </a>
+              <Link href={menu.route}>
+                <a href={menu.route} className={styles.a}>
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <menu.icon />
+                    </ListItemIcon>
+                    {open ? <ListItemText primary={menu.title} /> : null}
+                    {hasSubMenu(menu) ? handleSubMenu(index) : null}
+                  </ListItemButton>
+                </a>
+              </Link>
             </ListItem>
             {hasSubMenu(menu) ? (
               <Collapse in={showMenu[index]} timeout="auto" unmountOnExit>

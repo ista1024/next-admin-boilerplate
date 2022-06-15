@@ -49,7 +49,7 @@ const Home: NextPage = () => {
             width: 700,
           }}
         >
-          {loading ? <div>Loading...</div> : chart}
+          {loading ? null : chart}
         </div>
       </main>
     </ResponsiveDrawer>

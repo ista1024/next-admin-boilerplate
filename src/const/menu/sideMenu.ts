@@ -19,7 +19,6 @@ export interface SideMenuConstProps {
 }
 
 // 사이드 메뉴 관련 상수
-export type MenuConstTypes = "user" | "rootKey" | "custKey" | "apiKey" | "history";
 export const SIDE_MENU_WIDTH = 240;
 const user: SideMenuConstProps = { title: "사용자 관리", icon: PersonIcon, name: "user", route: "/user", subMenu: [] };
 const rootKey: SideMenuConstProps = { title: "ROOT 키 관리", icon: SecurityIcon, name: "rootKey", route: "/rootKey", subMenu: [] };
