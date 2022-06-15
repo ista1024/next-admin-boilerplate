@@ -14,6 +14,7 @@ import { SIDE_MENU_WIDTH } from "@/const/menu/sideMenu";
 
 import MaterialUISwitch from "@/components/MuiSwitch";
 import { palette } from "@mui/system";
+import { blueGrey } from "@mui/material/colors";
 
 import { ThemeContext } from "@/contexts/ThemeContext";
 
@@ -62,7 +63,7 @@ export default function ResponsiveDrawer({ title, children }: LayoutProps) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            {title ? title : "Responsive drawer"}
+            {title ? title : "KMS ADMIN CONSOLE"}
           </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <MaterialUISwitch />
@@ -70,7 +71,10 @@ export default function ResponsiveDrawer({ title, children }: LayoutProps) {
       </AppBar>
       <Box
         component="nav"
-        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        sx={{
+          width: { sm: drawerWidth },
+          flexShrink: { sm: 0 },
+        }}
       >
         <Drawer
           variant="temporary"
@@ -84,6 +88,7 @@ export default function ResponsiveDrawer({ title, children }: LayoutProps) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: blueGrey[900],
             },
           }}
         >
@@ -96,6 +101,7 @@ export default function ResponsiveDrawer({ title, children }: LayoutProps) {
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,
+              backgroundColor: blueGrey[900],
             },
           }}
           open={mobileOpen}

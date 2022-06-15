@@ -17,6 +17,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { blueGrey } from "@mui/material/colors";
 
 import ColorIconButton from "@/components/ColorIconButton";
 
@@ -32,12 +33,18 @@ interface SideMenuProps {
   handleOpen: () => void;
 }
 
+const SideMenuWrapper = styled("div")(({ theme }) => ({
+  backgroundColor: blueGrey[900],
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+}));
+
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
   padding: theme.spacing(0, 1),
-  backgroundColor: "#272727",
+  backgroundColor: blueGrey[900],
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
@@ -83,26 +90,25 @@ export default function SideMenu({ open, handleOpen }: SideMenuProps) {
       <Divider />
       <List>
         {sideMenu.menus.map((menu, index) => (
-          <div key={menu.title + index}>
-            <ListItem
-              key={menu.title}
-              onClick={() => {
-                hasSubMenu(menu) ? handleSubMenuClick(index) : null;
-              }}
-              disablePadding
-            >
-              <Link href={menu.route}>
-                <a href={menu.route} className={styles.a}>
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <menu.icon />
-                    </ListItemIcon>
-                    {open ? <ListItemText primary={menu.title} /> : null}
-                    {hasSubMenu(menu) ? handleSubMenu(index) : null}
-                  </ListItemButton>
-                </a>
-              </Link>
-            </ListItem>
+          <Box key={menu.title + index}>
+            <Link href={menu.route}>
+              <ListItem
+                component="a"
+                key={menu.title}
+                onClick={() => {
+                  hasSubMenu(menu) ? handleSubMenuClick(index) : null;
+                }}
+                disablePadding
+              >
+                <ListItemButton sx={{ color: "white" }}>
+                  <ListItemIcon sx={{ color: "white" }}>
+                    <menu.icon />
+                  </ListItemIcon>
+                  {open ? <ListItemText primary={menu.title} /> : null}
+                  {hasSubMenu(menu) ? handleSubMenu(index) : null}
+                </ListItemButton>
+              </ListItem>
+            </Link>
             {hasSubMenu(menu) ? (
               <Collapse in={showMenu[index]} timeout="auto" unmountOnExit>
                 <List>
@@ -117,7 +123,7 @@ export default function SideMenu({ open, handleOpen }: SideMenuProps) {
                 </List>
               </Collapse>
             ) : null}
-          </div>
+          </Box>
         ))}
       </List>
     </div>
